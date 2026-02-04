@@ -14,12 +14,14 @@ const requestHandler = (req, res) => {
     res.write("</html>");
     return res.end();
   }
+
   if (url === "/message" && method === "POST") {
     const body = [];
     req.on("data", (chunk) => {
       console.log(chunk);
       body.push(chunk);
     });
+
     req.on("end", () => {
       const parseBody = Buffer.concat(body).toString();
       const message = parseBody.split("=")[1];
@@ -31,9 +33,11 @@ const requestHandler = (req, res) => {
         return res.end();
       });
     });
+    return;
   }
 
-  res.setHeader("content-type", "text/html");
+  res.setHeader("Content-Type", "text/html");
+
   res.write("<html>");
   res.write("<head>");
   res.write("<title>My First Page");
@@ -42,7 +46,7 @@ const requestHandler = (req, res) => {
   res.write("<body>");
   res.write("<h1>Hello from Node.js Server</h1>");
   res.write("<h1>Hello from Node.js Server</h1>");
-  res.write("<h2>I am loving it</h2");
+  res.write("<h2>I am loving it</h2>");
 
   res.write("</body>");
   res.write("</html>");
