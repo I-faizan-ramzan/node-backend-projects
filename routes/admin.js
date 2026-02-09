@@ -11,7 +11,13 @@ const products = [];
 router.get("/add-product", (req, res, next) => {
   // console.log("In another middleware! product");
   //... sending response
-  res.render("add-product", { pageTitle: "Products Add" });
+  res.render("add-product", {
+    pageTitle: "Products Add",
+    path: "/admin/add-product",
+    formCSS: true,
+    isAddProduct: true,
+    productCSS: true,
+  });
 });
 
 // /admin/add-product=>POST
