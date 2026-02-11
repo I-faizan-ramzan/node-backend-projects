@@ -1,21 +1,17 @@
-const path = require("path");
-const rootDir = require("../utill/path");
-const express = require("express");
-const adminData = require("./admin");
+const path = require('path');
+
+const express = require('express');
+
+const shopController = require('../controllers/shop');
 
 const router = express.Router();
 
-router.get("/", (req, res, next) => {
-  // console.log("In another midleware Express");
-  const product = adminData.products;
-  res.render("shop", {
-    prods: product,
-    pageTitle: "Shop",
-    path: "/",
-    hasProducts: product.length > 0,
-    isShop: true,
-    productCSS: true,
-  });
-});
+router.get('/', shopController.getIndex);
+
+router.get('/products', shopController.getProducts);
+
+router.get('/cart', shopController.getCart);
+
+router.get('/checkout', shopController.getCheckout);
 
 module.exports = router;
